@@ -30,7 +30,7 @@ public class ServerMain {
 
         // 2. Start server and wait for the spacecraft (client) to connect
         Server server = new Server();
-        server.startServer(5000); // Updated (last time): now prints a banner and starts the background telemetry listener
+        server.startServer(5000); 
 
         MissionControl control = new MissionControl();
         control.setServer(server);
@@ -63,7 +63,7 @@ public class ServerMain {
                 System.out.println("Spacecraft restored:");
                 spacecraft.displayInfo();
 
-                // Updated (last time): seed the live status view with the restored baseline
+                //  seed the live status view with the restored baseline
                 server.updateLatestTelemetry(new Telemetry(fuel, altitude, speed, "IDLE"));
             }
         }
@@ -81,7 +81,7 @@ public class ServerMain {
             System.out.println("7.  Deploy Satellite");
             System.out.println("8.  Send Custom Command");
             System.out.println("9.  Broadcast Alert");
-            System.out.println("10. View Live Mission Status"); // Updated (last time): replaces old options 10 & 11
+            System.out.println("10. View Live Mission Status"); 
             System.out.println("11. End Mission");
             System.out.println("0.  Exit & Close Server");
             System.out.print("Choose an option: ");
@@ -105,7 +105,7 @@ public class ServerMain {
                     control.assignSpacecraft(spacecraft);
                     saveState(missionName, spacecraft);
 
-                    // Updated (last time): sync the actual entered fuel to the client over the socket
+               
                     control.sendMissionCommand("SET_FUEL:" + rFuel);
                     server.updateLatestTelemetry(new Telemetry(rFuel, 0, 0, "IDLE"));
                     break;
@@ -119,7 +119,7 @@ public class ServerMain {
                     control.assignSpacecraft(spacecraft);
                     saveState(missionName, spacecraft);
 
-                    control.sendMissionCommand("SET_FUEL:" + sFuel); // Updated (last time)
+                    control.sendMissionCommand("SET_FUEL:" + sFuel); 
                     server.updateLatestTelemetry(new Telemetry(sFuel, 0, 0, "IDLE"));
                     break;
 
@@ -133,7 +133,7 @@ public class ServerMain {
                         ((Rocket) spacecraft).launch();
                         control.sendMissionCommand("LAUNCH");
                         saveState(missionName, spacecraft);
-                        // Updated (last time): telemetry is no longer shown here - only via "View Live Mission Status"
+                    
                     } else {
                         System.out.println("No rocket assigned yet! Choose option 2 first.");
                     }
@@ -170,7 +170,7 @@ public class ServerMain {
                     break;
 
                 case "10":
-                    // Updated (last time): live, auto-refreshing telemetry screen
+                    //  live, auto-refreshing telemetry screen
                     viewLiveMissionStatus(control, scanner);
                     break;
 
@@ -193,14 +193,11 @@ public class ServerMain {
         System.out.println("Mission Control shut down.");
     }
 
-    // Updated (last time): auto-refreshing live telemetry screen. Reads from the
-    // server's background-updated telemetry field, so it never blocks the socket
-    // connection and the mission state is never reset when you leave and come back.
+   
     private static void viewLiveMissionStatus(MissionControl control, Scanner scanner) throws InterruptedException {
         System.out.println("\n========== LIVE MISSION STATUS ==========");
 
-        // Updated (last time): explicitly START the live telemetry lifecycle on both
-        // the client (begins ticking) and the server (begins listening) - only now.
+
         control.sendMissionCommand("START_LIVE_TELEMETRY");
         control.startLiveTelemetry();
 
@@ -233,15 +230,14 @@ public class ServerMain {
             Thread.sleep(2500);
         }
 
-        // Updated (last time): explicitly STOP the live telemetry lifecycle - completely,
-        // on both sides - the instant Q is pressed. Nothing keeps running in the background.
+   
         control.sendMissionCommand("STOP_LIVE_TELEMETRY");
         control.stopLiveTelemetry();
 
         System.out.println("Returning to Main Menu...\n");
     }
 
-    // ---- Simple file-based persistence so mission/spacecraft survive a restart ----
+
 
     private static void saveState(String missionName, Spacecraft spacecraft) {
         Properties props = new Properties();
