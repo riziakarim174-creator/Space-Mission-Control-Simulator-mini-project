@@ -1,9 +1,7 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 
-// Handles listening for telemetry from the connected spacecraft (client).
-// Its background thread only runs while "View Live Mission Status" is open -
-// it is explicitly started/stopped, never runs permanently in the background.
+
 public class ClientHandler {
     private final BufferedReader in;
     private Thread listenerThread;
@@ -14,10 +12,10 @@ public class ClientHandler {
         this.in = in;
     }
 
-    // Starts the background listening thread - call ONLY when Live Mission Status opens
+
     public void start() {
         if (active) {
-            return; // already running, avoid starting a second thread
+            return; 
         }
         active = true;
         listenerThread = new Thread(() -> {
@@ -39,13 +37,13 @@ public class ClientHandler {
                     }
                 }
             } catch (IOException | InterruptedException e) {
-                // Loop stopped - this is the expected, clean way stop() ends the thread
+          
             }
         });
         listenerThread.start();
     }
 
-    // Stops the background listening thread completely - call when the user presses Q
+ 
     public void stop() {
         active = false;
         if (listenerThread != null) {
