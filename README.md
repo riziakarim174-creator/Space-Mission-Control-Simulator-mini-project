@@ -70,7 +70,11 @@ This project strictly adheres to **Object-Oriented Programming (OOP)** principle
 
 ## Team members who build this mini project for academic purpose
 1.Isfak Mahmud Hridoy (Mission Control + Multi Threading)
+
 2.Mahmudul Ferdous (Socket Programming)
+
 3.Rizia Karim (Exception handling + File handling + Multi Threading)
+
 4.Koushik Chakrobortty (Spacecraft + Rocket + Satellite)
+
 5.Afsana Khatun ( Mission + Space Mission)
