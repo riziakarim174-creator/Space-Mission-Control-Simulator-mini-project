@@ -5,7 +5,7 @@ public class User {
     private String username;
     private String password;
 
-    // Simple in-memory "database" of valid users (no DB integration, kept easy)
+ 
     private static Map<String, String> userDatabase = new HashMap<>();
     static {
         userDatabase.put("admin", "1234");
