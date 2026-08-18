@@ -32,7 +32,7 @@ public class Telemetry {
         return speed;
     }
 
-    public String getStatus() { // Updated (last time)
+    public String getStatus() { 
         return status;
     }
 }
