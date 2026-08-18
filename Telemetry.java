@@ -2,13 +2,12 @@ public class Telemetry {
     private double fuel;
     private double altitude;
     private double speed;
-    private String status; // Updated (last time): tracks mission status (IDLE, LAUNCHED, etc.) for Live Mission Status
-
+    private String status; 
     public Telemetry(double fuel, double altitude, double speed) {
-        this(fuel, altitude, speed, "IDLE"); // Updated (last time): defaults to IDLE if no status given
+        this(fuel, altitude, speed, "IDLE"); 
     }
 
-    // Updated (last time): overloaded constructor that also carries a status label
+    // overloaded constructor that also carries a status label
     public Telemetry(double fuel, double altitude, double speed, String status) {
         this.fuel = fuel;
         this.altitude = altitude;
