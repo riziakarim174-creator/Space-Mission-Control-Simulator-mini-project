@@ -13,7 +13,7 @@ bidirectional communication between Mission Control and the Spacecraft Client.
 start/stop lifecycle control to optimize resource usage.
 - **Session Persistence:** Saves and restores mission states (spacecraft status, fuel levels, altitude) across 
 application restarts using 'mission_state.properties'.
-- **Command Dispatch:** Supports remote execution of commands such as 'LAUNCH', 'BOOST', 'DEPLOY', 'SET_FUEL', and custom alerts.
+- **Command Dispatch:** Supports remote execution of commands such as 'LAUNCH', 'BOOST', 'DEPLOY' and custom alerts.
 - **Mission Event Logging:** Appends system events with timestamps into a local 'mission_log.txt' file.
 
 
@@ -30,7 +30,7 @@ This project strictly adheres to **Object-Oriented Programming (OOP)** principle
 
 
 ## Repository Structure
-.
+
 ├── Client.java                  # Socket communication logic for the client side
 
 ├── ClientMain.java              # Client entry point and local telemetry loop
