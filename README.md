@@ -4,7 +4,7 @@ A Java-based socket programming and object-oriented simulation system designed t
 (Rockets and Satellites) in real time from a centralized Mission Control server.
 
 
-## Key Features
+## Features
 
 - **Client-Server Architecture:** Built on Java Sockets ('ServerSocket' & 'Socket') for real-time 
 bidirectional communication between Mission Control and the Spacecraft Client.
@@ -30,20 +30,35 @@ This project strictly adheres to **Object-Oriented Programming (OOP)** principle
 ## Repository Structure
 .
 ├── Client.java                  # Socket communication logic for the client side
+
 ├── ClientMain.java              # Client entry point and local telemetry loop
+
 ├── Server.java                  # Socket server handling client connection & telemetry
+
 ├── ServerMain.java              # Mission Control CLI menu & authentication entry point
+
 ├── ClientHandler.java            # Background thread handler for live telemetry streaming
+
 ├── MissionControl.java          # Core logic connecting server, spacecraft, and loggers
+
 ├── CommandCenter.java           # Interface for socket command and telemetry interactions
+
 ├── Spacecraft.java               # Abstract base class for spacecrafts
+
 ├── Rocket.java                  # Subclass representing Rocket mechanics
+
 ├── Satellite.java               # Subclass representing Satellite mechanics
+
 ├── Mission.java                 # Abstract base class for missions
+
 ├── SpaceMission.java            # Concrete implementation of space missions
+
 ├── Telemetry.java               # Data model for fuel, altitude, speed, and status
+
 ├── MissionLog.java               # File writer utility for system events
+
 ├── User.java                    # User authentication helper
+
 └── ConnectionException.java    # Custom exception classes
 
 ## Run the Project
@@ -51,7 +66,7 @@ This project strictly adheres to **Object-Oriented Programming (OOP)** principle
 2. Run 'ClientMain' class
 3. Then run the code according the console..
 
-## Team members who build this mini project for academic 
+## Team members who build this mini project for academic purpose
 1.Isfak Mahmud Hridoy (Mission Control + Multi Threading)
 2.Mahmudul Ferdous (Socket Programming)
 3.Rizia Karim (Exception handling + File handling + Multi Threading)
