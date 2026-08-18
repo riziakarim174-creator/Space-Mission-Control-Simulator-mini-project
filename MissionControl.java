@@ -52,14 +52,13 @@ public class MissionControl {
         }
     }
 
-    // Updated (last time): exposes the server's live telemetry without blocking -
+   
     // used by the "View Live Mission Status" menu option
     public Telemetry getLatestTelemetry() {
         return server.getLatestTelemetry();
     }
 
-    // Updated (last time): start/stop the live telemetry listening thread -
-    // strictly tied to Live Mission Status being open/closed
+
     public void startLiveTelemetry() {
         server.startLiveTelemetry();
     }
