@@ -13,7 +13,7 @@ public class Client implements CommandCenter {
         socket = new Socket(host, port);
         out = new PrintWriter(socket.getOutputStream(), true);
         in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-        System.out.println("\u2714 Connected to server successfully!"); // Updated (last time)
+        System.out.println("\u2714 Connected to server successfully!"); 
     }
 
     @Override
@@ -42,11 +42,11 @@ public class Client implements CommandCenter {
 
     @Override
     public void sendTelemetry(Telemetry telemetry) throws Exception {
-        // Updated (last time): status is now included so Mission Control can show it live
+       
         String data = "TELEMETRY:" + telemetry.getFuel() + "," + telemetry.getAltitude()
                 + "," + telemetry.getSpeed() + "," + telemetry.getStatus();
         out.println(data);
-        System.out.println("[SOCKET] Telemetry sent to Mission Control"); // Updated (last time)
+        System.out.println("[SOCKET] Telemetry sent to Mission Control"); 
     }
 
     @Override
