@@ -1,7 +1,7 @@
 public class ClientMain {
 
     private static volatile boolean launched = false;
-    private static volatile boolean liveTelemetryActive = false; // Updated (last time): lifecycle flag
+    private static volatile boolean liveTelemetryActive = false; 
     private static volatile boolean running = true;
     private static volatile double currentSpeed = 0;
     private static int tick = 0;
@@ -12,7 +12,7 @@ public class ClientMain {
 
     private static Rocket spacecraft;
     private static Client client;
-    private static Thread telemetryThread; // Updated (last time): only alive while Live Status is open
+    private static Thread telemetryThread; 
 
     public static void main(String[] args) throws Exception {
         System.out.println("========== SPACECRAFT CLIENT ==========");
@@ -24,11 +24,9 @@ public class ClientMain {
         System.out.println("Spacecraft ready.");
         System.out.println("========================================\n");
 
-        // Default fuel until Mission Control sends the actual assigned amount (SET_FUEL command)
+   
         spacecraft = new Rocket("Client-Spacecraft", 100);
 
-        // Updated (last time): NO background thread starts here anymore.
-        // Telemetry only ticks while Mission Control has "View Live Mission Status" open.
 
         while (running) {
             String message = client.receiveCommand();
@@ -45,7 +43,7 @@ public class ClientMain {
             }
         }
 
-        stopTelemetryLoop(); // Updated (last time): make sure nothing lingers on disconnect
+        stopTelemetryLoop(); 
         client.disconnect();
         System.out.println("Client shut down.");
     }
@@ -64,15 +62,15 @@ public class ClientMain {
             double fuelAmount = Double.parseDouble(command.replace("SET_FUEL:", ""));
             spacecraft.restoreState(fuelAmount, spacecraft.getAltitude(), spacecraft.getSpeed());
             System.out.println("Initial fuel set to: " + fuelAmount);
-        } else if (command.equals("START_LIVE_TELEMETRY")) { // Updated (last time)
+        } else if (command.equals("START_LIVE_TELEMETRY")) { 
             startTelemetryLoop();
-        } else if (command.equals("STOP_LIVE_TELEMETRY")) { // Updated (last time)
+        } else if (command.equals("STOP_LIVE_TELEMETRY")) { 
             stopTelemetryLoop();
         }
         // Other commands (MISSION_START, DEPLOY, custom text) don't affect telemetry
     }
 
-    // Updated (last time): starts the ticking thread - only called while Live Mission Status is open
+    //  starts the ticking thread - only called while Live Mission Status is open
     private static void startTelemetryLoop() {
         if (liveTelemetryActive) {
             return; // already running, don't start a second thread
@@ -82,7 +80,7 @@ public class ClientMain {
         telemetryThread.start();
     }
 
-    // Updated (last time): stops the ticking thread completely - called the moment Q is pressed
+    // : stops the ticking thread completely - called the moment Q is pressed
     private static void stopTelemetryLoop() {
         liveTelemetryActive = false;
         if (telemetryThread != null) {
@@ -90,7 +88,7 @@ public class ClientMain {
         }
     }
 
-    // Updated (last time): runs only between startTelemetryLoop() and stopTelemetryLoop().
+    //  runs only between startTelemetryLoop() and stopTelemetryLoop().
     // Fuel/altitude/speed keep whatever value they had last time - never reset here.
     private static void telemetryLoop() {
         while (liveTelemetryActive && running) {
@@ -109,7 +107,7 @@ public class ClientMain {
 
             tick++;
 
-            // Gradual ramp-up for the first few ticks after launch, then hold steady
+
             if (tick <= RAMP_TICKS) {
                 currentSpeed = Math.min(CRUISE_SPEED, tick * RAMP_STEP);
             }
