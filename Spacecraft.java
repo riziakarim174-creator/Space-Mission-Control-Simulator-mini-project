@@ -34,7 +34,7 @@ public abstract class Spacecraft {
         return name;
     }
 
-    // Used to restore a spacecraft's telemetry after reloading a saved session
+
     public void restoreState(double fuel, double altitude, double speed) {
         this.fuel = fuel;
         this.altitude = altitude;
