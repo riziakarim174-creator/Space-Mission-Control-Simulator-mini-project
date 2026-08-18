@@ -11,8 +11,7 @@ public class Server implements CommandCenter {
     private PrintWriter out;
     private BufferedReader in;
 
-    // Updated (last time): telemetry listening is now handled by a dedicated ClientHandler
-    // whose thread only runs while Live Mission Status is open - no permanent background thread.
+   
     private ClientHandler clientHandler;
 
     public void startServer(int port) throws IOException {
@@ -30,23 +29,22 @@ public class Server implements CommandCenter {
         System.out.println("Client IP: " + socket.getInetAddress().getHostAddress());
         System.out.println("==============================================\n");
 
-        // Updated (last time): just wires up the handler - its thread does NOT start yet
+        //  just wires up the handler - its thread does NOT start yet
         clientHandler = new ClientHandler(in);
     }
 
-    // Updated (last time): starts the live telemetry listening thread -
+    // starts the live telemetry listening thread -
     // call ONLY when "View Live Mission Status" is opened
     public void startLiveTelemetry() {
         clientHandler.start();
     }
 
-    // Updated (last time): stops the live telemetry listening thread completely -
+    // stops the live telemetry listening thread completely -
     // call the moment the user presses Q to leave Live Mission Status
     public void stopLiveTelemetry() {
         clientHandler.stop();
     }
 
-    // Updated (last time): now delegates to the ClientHandler instead of a raw field
     public void updateLatestTelemetry(Telemetry telemetry) {
         clientHandler.setLatestTelemetry(telemetry);
     }
@@ -83,7 +81,7 @@ public class Server implements CommandCenter {
         out.println(data);
     }
 
-    // Kept for interface compatibility; superseded by ClientHandler above.
+
     @Override
     public Telemetry receiveTelemetry() throws Exception {
         String line = in.readLine();
@@ -96,7 +94,7 @@ public class Server implements CommandCenter {
 
     public void closeServer() throws IOException {
         if (clientHandler != null) {
-            clientHandler.stop(); // Updated (last time): make sure nothing lingers on exit
+            clientHandler.stop(); 
         }
         if (in != null) in.close();
         if (out != null) out.close();
