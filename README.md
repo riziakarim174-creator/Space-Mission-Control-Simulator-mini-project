@@ -26,6 +26,8 @@ This project strictly adheres to **Object-Oriented Programming (OOP)** principle
 - **Interfaces:** 'CommandCenter' enforces unified execution contracts for both Client and Server.
 - **Custom Exception Handling:** Utilizes domain-specific exceptions ('ConnectionException', 'InvalidCommandException').
 
+<img width="789" height="482" alt="Screenshot 2026-08-18 205613" src="https://github.com/user-attachments/assets/7fa414c0-52d9-4bca-9a0a-66fd6bb4e057" />
+
 
 ## Repository Structure
 .
